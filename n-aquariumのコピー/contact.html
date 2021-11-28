@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>N水族館</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="headerInner">
+            <h1 class="logo">N水族館</h1>
+            <div class="contactButton">
+                <a href="https://www.google.co.jp/">お問い合わせ</a>
+            </div>
+            <nav class="globaoNav"><a href="https://www.nnn.ed.nico/courses/488/chapters/6600">スプシ</a></nav>
+        </div>
+    </header>
+    <main>
+        <h1>お問い合わせ</h1>
+        <form action="thanks.html">
+            <table class="contactForm">
+                <tr>
+                    <th><label for="name">お名前</label></th>
+                    <td><input type="text" name="name" placeholder="名前を入れてください"></td>
+                </tr>
+                <tr>
+                    <th>性別</th>
+                    <td>
+                        <input type="radio" name="gender" id="male" value="male"><label for="male">男性</label>
+                        <input type="radio" name="gender" id="female" value="female"><label for="female">女性</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="age">年齢</label></th>
+                    <div class="selectBox">
+                        <th>
+                            <select name="age">
+                            <option value="10">10代</option>
+                            <option value="20">20代</option>
+                            <option value="30">30代</option>
+                            <option value="40">40代</option>
+                            <option value="other">それ以上</option>
+                        </select>
+                        </th>
+                    </div>
+                </tr>
+                <tr>
+                    <th><label for="title">題名</label></th>
+                    <td><input type="text" name="title" placeholder="タイトルを入れてください"></td>
+                </tr>
+                <tr>
+                    <th><label for="comment">質問内容</label></th>
+                    <td><textarea name="comment" cols="30" rows="10"></textarea></td>
+                </tr>
+            </table>
+            <div class="text-center">
+                <input type="submit" value="送信する">
+            </div>
+            <p>感想を教えてください</p>
+            <input type="radio" name="answer" value="good">良かった
+            <input type="radio" name="answer" value="normal">ふつう
+            <input type="radio" name="answer" value="bad">悪かった
+            <p>好きな食べ物を教えてください</p>
+            <input type="checkbox" name="food" value="sushi">お寿司
+            <input type="checkbox" name="food" value="tempura">天ぷら
+            <input type="checkbox" name="food" value="yakiniku">焼き肉
+            <input type="checkbox" name="food" value="steak">ステーキ
+            <input type="checkbox" name="food" value="shabushabu">しゃぶしゃぶ
+            <p>感想を教えてください</p>
+            <select name="answer">
+                <option value="good">良かった</option>
+                <option value="normal">ふつう</option>
+                <option value="bad">悪かった</option>
+            </select>
+            <p>好きな食べ物を教えてください</p>
+            <select name="food" multiple>
+                <option value="sushi">お寿司</option>
+                <option value="tempura">天ぷら</option>
+                <option value="yakiniku">焼き肉</option>
+                <option value="steak">ステーキ</option>
+                <option value="shabushabu">しゃぶしゃぶ</option>
+            </select>
+            <div class="text-center">
+                <input type="checkbox" id="check"><label for="check">個人情報の取扱に同意する</label>
+            </div>
+            <input name="myFile" type="file">
+            <div class="text-center">
+                <input type="submit" value="送信する">
+            </div>
+        </form>
+    </main>
+    <footer>
+        <div class="footerInner">
+            <small>&copy; N水族館 2018</small>
+        </div>
+    </footer>
+</body>
+
+</html>
