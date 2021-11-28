@@ -1,7 +1,4 @@
-        * {
-            margin-left: auto;
-            margin-right: auto;
-        }
+
         
         body {
             font-family: sans-serif;
@@ -20,12 +17,13 @@
             position: relative;
         }
         
-        h2 {
+        .subtitle {
             position: relative;
             font-size: 20px;
+            margin-top: 10px;
         }
         
-        h2::before {
+        .subtitle::before {
             content: '';
             position: absolute;
             width: 150px;
@@ -45,7 +43,7 @@
         }
         
         body {
-            margin: 0 auto;
+            /* margin: 0 auto; */
             width: 60%;
         }
         
@@ -53,7 +51,8 @@
             background: white;
             width: 700px;
             height: 50px;
-            margin: 10px;
+            margin-top: 10px;
+        
             box-shadow: 0px 1px 3px rgb(204, 202, 202);
             justify-content: center;
             align-items: center;
