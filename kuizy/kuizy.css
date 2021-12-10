@@ -1,3 +1,4 @@
+        /* ガチで東京の人しか解けない！ #東京の難読地名クイズ */
         .title {
             font-size: 20px;
             font-weight: bold;
@@ -5,17 +6,20 @@
             margin-left: 30%;
             margin-right: 30%;
         }
+        /* 1から10番までの全部に適用 */
         .quiz {
             margin-left: 30%;
             margin-right: 30%;
             margin-bottom: 3em;
         }
+        /* この地名はなんて読む？ */
         .question_title {
             font-size: 18px;
             font-weight: bold;
             margin-top: 100px;
             position: relative;
         }
+        /* 1~10のこの地名はなんて読む？ の下線部 */
         .question_title::after {
             content: "";
             position: absolute;
@@ -25,6 +29,7 @@
             background-color: #00ab36;
             margin-top: 10px;
         }
+        /* 1~10の３つの選択肢ボックス */
         .question_list_item {
             font-size: 15px;
             border: solid 1px #ebebeb;
@@ -33,16 +38,22 @@
             padding: 15px;
             font-weight: bold;
         }
+        /* 1~10の正解は「」です！ */
+        .question_correct_answer {
+            display: none;
+        }
+        /* 1~10の不正解！正解は「」です！ */
+        .question_wrong_answer {
+            display: none;
+        }
 
 
-
+        /* 正解のボックスを押した後の変化後 */
         .question_list_item-correct {
             background-color: #287dff;
             color: #ffffff;
         }
-        .question_correct_answer {
-            /* display: none; */
-        }
+        /* 1~10の正解は「」です！の変化後 */
         .question_correct_answer-visible {
             display: block;
             background-color: #f5f5f5;
@@ -52,6 +63,7 @@
             line-height: 35px;
             pointer-events: none;
         }
+        /* 1~10の正解は「」です！の下線部。変化後 */
         .question_correct_answer-visible::before {
             content: "";
             position: absolute;
@@ -62,16 +74,12 @@
             margin-top: 30px;
             font-weight: bold;
         }
-
-
-
+        /* 不正解のボックスを押した後の変化後 */
         .question_list_item-wrong {
             background-color: #ff5128;
             color: #ffffff;
         }
-        .question_wrong_answer {
-            /* display: none; */
-        }
+        /* 1~10の不正解！正解は「」です！の変化後 */
         .question_wrong_answer-visible {
             display: block;
             background-color: #f5f5f5;
@@ -81,6 +89,7 @@
             line-height: 35px;
             pointer-events: none;
         }
+        /* 1~10の不正解！正解は「」です！の下線部。変化後 */
         .question_wrong_answer-visible::before {
             content: "";
             position: absolute;
@@ -91,7 +100,7 @@
             margin-top: 30px;
             font-weight: bold;
         }
-        
+        /* 押せないようにする */
         .question_list_item_don\'tPush {
             pointer-events: none;
         }
