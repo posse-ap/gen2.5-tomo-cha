@@ -28,17 +28,16 @@ const img = [
     "https://d1khcm40x1j0f.cloudfront.net/words/34508ddb0789ee73471b9f17977e7c9c.png",
 ];
 
-// console.log(li[0])
-
 
 // htmlをjsで記入
 for (let i=0; i<10; i++ ) {
+    // 選択肢のliをまるごとリストにする
     const li = [
         `<li id="wrong_${i}_0" onclick="check(${i}, 0)" class="question_list_item">${selection[i][0]}</li>`,
         `<li id="wrong_${i}_1" onclick="check(${i}, 1)" class="question_list_item">${selection[i][1]}</li>`,
         `<li id="correct_${i}_2" onclick="check(${i}, 2)" class="question_list_item">${selection[i][2]}</li>`
     ]
-
+    // liの位置をランダムにする
     for(j=li.length-1 ; j>0; j--){
 
         r = Math.floor(Math.random()*(j+1))
@@ -46,7 +45,7 @@ for (let i=0; i<10; i++ ) {
         li[j] = li[r]
         li[r] = tmp
     }
-
+    // html本文をfor文で    表示する
     let a =
         '<div class="question">'
             +`<h2 class="question_title">${i+1}. この地名はなんて読む？</h2>`
@@ -61,83 +60,36 @@ for (let i=0; i<10; i++ ) {
         +'</div>';
     question.insertAdjacentHTML('beforeend', a);
 }
-// checkの関数
+// 36~38のcheckの関数question_numberは大問番号、selection_numberは選択肢の番号を表す
 function check(question_number, selection_number) {
+    // 不正解ボタンを押したとき、idを取得
     const wrongAnswerBox = document.getElementById("wrong_"+question_number+"_"+selection_number);
+    // 正解ボタンを押したとき、idを取得
     const correctAnswerBox = document.getElementById("correct_"+question_number+"_"+selection_number);
+    // 常に正解ボタンのidを取得
     const alwaysCorrectAnswerBox = document.getElementById("correct_"+question_number+"_"+2);
+    // リスト全体のidを取得
     const questionListBox = document.getElementById("questionList_"+question_number);
+    // 正解。正解は「」です！のidを取得
     const questionCorrectAnswerBox = document.getElementById("questionCorrectAnswer_"+question_number+"_"+selection_number);
+    // 不正解。正解は「」です！のidを取得
     const questionWrongAnswerBox = document.getElementById("questionWrongAnswer_"+question_number);
+
     if (selection_number === 2) {
-        
+        // 正解の選択肢を青色にする
         correctAnswerBox.classList.add('question_list_item-correct');
+        // 正解。正解は「」です！
         questionCorrectAnswerBox.classList.add('question_correct_answer-visible');
+        // 押せなくする
         questionListBox.classList.add('question_list_item_don\'tPush');
     }else{
-        
+        // 不正解の選択肢を赤色にする
         wrongAnswerBox.classList.add('question_list_item-wrong');
+        // 正解の選択肢を青色にする
         alwaysCorrectAnswerBox.classList.add('question_list_item-correct');
+        // 不正解。正解は「」です！を表示
         questionWrongAnswerBox.classList.add('question_wrong_answer-visible');
+        // 押せなくする
         questionListBox.classList.add('question_list_item_don\'tPush');
     }
 }
-
-
-
-// document.getElementById(correct_i).onclick = function() {
-//     // ここに#buttonをクリックしたら発生させる処理を記述する
-//     this.classList.add("question_list_item-correct");
-// };
-
-// 正答を選んだときの答えのidを取得`
-// const questionCorrectArray = [
-//     "questionCorrectAnswer_1",
-// ];
-
-// for (let i=0; i<questionCorrectArray.length; i++) {
-//     questionCorrectArray[i] = document.getElementById(questionCorrectArray[i])
-//     console.log(questionCorrectArray[i])
-// }
-
-// function pushedCorrect_1(){
-//     correct_1.classList.add('question_list_item-correct')
-//     questionCorrectAnswer_1.classList.add('question_correct_answer-visible')
-//     wrong_1_1.classList.add('question_list_item_don\'tPush')
-//     wrong_1_2.classList.add('question_list_item_don\'tPush')
-// }
-
-// // 正答を押したときpushed関数を呼び出す
-// correct_1.addEventListener("click", pushedCorrect_1)
-
-// const wrong_1_1 = document.getElementById('wrong_1_1')
-
-// const wrong_1_2 = document.getElementById('wrong_1_2')
-
-// // 誤答を選んだときの答えのidを取得
-// const questionWrongAnswer_1 = document.getElementById('questionWrongAnswer_1')
-
-// // 誤答を選んだとき、変化後のクラス名を足す
-// function pushedWrong_1_1(){
-//     wrong_1_1.classList.add('question_list_item-wrong')
-//     // wrong_1_2.classList.add('question_list_item-wrong')
-//     questionWrongAnswer_1.classList.add('question_wrong_answer-visible')
-//     correct_1.classList.add('question_list_item_don\'tPush')
-//     wrong_1_2.classList.add('question_list_item_don\'tPush')
-//     correct_1.classList.add('question_list_item-correct')
-// }
-
-// function pushedWrong_1_2(){
-//     // wrong_1_1.classList.add('question_list_item-wrong')
-//     wrong_1_2.classList.add('question_list_item-wrong')
-//     questionWrongAnswer_1.classList.add('question_wrong_answer-visible')
-//     correct_1.classList.add('question_list_item_don\'tPush')
-//     wrong_1_1.classList.add('question_list_item_don\'tPush')
-//     correct_1.classList.add('question_list_item-correct')
-// }
-
-
-// // 誤答を押したときpushed関数を呼び出す
-// wrong_1_1.addEventListener("click", pushedWrong_1_1)
-
-// wrong_1_2.addEventListener("click", pushedWrong_1_2)

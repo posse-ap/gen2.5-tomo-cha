@@ -11,127 +11,32 @@
 </head>
 
 <body>
+    <nav class="nav">
+        <ul class="nav_list_left">
+            <li id="navListItemHumburger" class="nav_list_item_humburger"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg></li>
+            <li class="nav_list_item_kuizy"><a href="https://kuizy.net/">kuizy</a></li>
+        </ul>
+        <ul class="nav_list_right">
+            <li class="nav_list_item_create"><a href="https://kuizy.net/prepare">クイズ・診断を作る</a></li>
+            <li class="nav_list_item_search"><a href="https://kuizy.net/search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                </svg>検索</a>
+            </li>
+        </ul>
+    </nav>
     <main>
+        <h1 class="title">ガチで東京の人しか解けない！ #東京の難読地名クイズ</h1>
         <section class="quiz">
-        <!-- beforebegin --> 
+        <!-- beforebegin -->
         <div id="question">
             <!-- afterbegin -->
             <!-- beforeend -->
-        <!-- afterend -->
-        <h1 class="title">ガチで東京の人しか解けない！ #東京の難読地名クイズ</h1>
         </div>
-            <!-- <div class="question">
-                <h2 class="question_title">1. この地名はなんて読む？</h2>
-                <img class="question_img" src="https://d1khcm40x1j0f.cloudfront.net/quiz/34d20397a2a506fe2c1ee636dc011a07.png" alt="たかなわ">
-                <ul class="question_list">
-                    idが１つしかつけられないからwrong_1(誤答のときの動き)を２箇所につけられない。どうする？
-                    <li id="wrong_1_1" class="question_list_item">たかわ</li>
-                    <li id="wrong_1_2" class="question_list_item">こうわ</li>
-                    <li id="correct_1" class="question_list_item">たかなわ</li>
-                </ul>
-                「正解！」のところだけを太文字にできないか？、pを２箇所にするとidが２つになって見にくくなってしまうのではないか？
-                <p id="questionCorrectAnswer_1" class="question_correct_answer"><b>正解！</b><br>正解は「たかなわ」です！</p>
-                <p id="questionWrongAnswer_1" class="question_wrong_answer"><b>不正解！</b><br>正解は「たかなわ」です！</p>
-            </div>
-            <div class="question">
-                <h2 class="question_title">2. この地名はなんて読む？</h2>
-                <img class="question_img" src="https://d1khcm40x1j0f.cloudfront.net/quiz/512b8146e7661821c45dbb8fefedf731.png" alt="たかなわ">
-                <ul class="question_list">
-                    <li id="wrong_2_1" class="question_list_item">かめと</li>
-                    <li id="wrong_2_2" class="question_list_item">かめど</li>
-                    <li id="correct_2" class="question_list_item">かめいど</li>
-                </ul>
-                <p id="questionCorrectAnswer_2" class="question_correct_answer"><b>正解！</b><br>正解は「かめいど」です！</p>
-                <p id="questionWrongAnswer_2" class="question_wrong_answer"><b>不正解！</b><br>正解は「かめいど」です！</p>
-            </div>
-            <div class="question">
-                <h2 class="question_title">3. この地名はなんて読む？</h2>
-                <img class="question_img" src="https://d1khcm40x1j0f.cloudfront.net/quiz/ad4f8badd896f1a9b527c530ebf8ac7f.png" alt="たかなわ">
-                <ul class="question_list">
-                    <li id="wrong_3_1" class="question_list_item">おかとまち</li>
-                    <li id="wrong_3_2" class="question_list_item">かゆまち</li>
-                    <li id="correct_3" class="question_list_item">こうじまち</li>
-                </ul>
-                <p id="questionCorrectAnswer_3" class="question_correct_answer"><b>正解！</b><br>正解は「こうじまち」です！</p>
-                <p id="questionWrongAnswer_3" class="question_wrong_answer"><b>不正解！</b><br>正解は「こうじまち」です！</p>
-            </div>
-            <div class="question">
-                <h2 class="question_title">4. この地名はなんて読む？</h2>
-                <img src="https://d1khcm40x1j0f.cloudfront.net/quiz/ee645c9f43be1ab3992d121ee9e780fb.png" alt="たかなわ">
-                <ul class="question_list">
-                    <li id="wrong_4_1" class="question_list_item">ごせいもん</li>
-                    <li id="wrong_4_2" class="question_list_item">おかどもん</li>
-                    <li id="correct_4" class="question_list_item">おなりもん</li>
-                </ul>
-                <p id="questionCorrectAnswer_4" class="question_correct_answer"><b>正解！</b><br>正解は「おなりもん」です！</p>
-                <p id="questionWrongAnswer_4" class="question_wrong_answer"><b>不正解！</b><br>正解は「おなりもん」です！</p>
-            </div>
-            <div class="question">
-                <h2 class="question_title">5. この地名はなんて読む？</h2>
-                <img class="question_img" src="https://d1khcm40x1j0f.cloudfront.net/quiz/6a235aaa10f0bd3ca57871f76907797b.png" alt="たかなわ">
-                <ul class="question_list">
-                    <li id="wrong_5_1" class="question_list_item">たたら</li>
-                    <li id="wrong_5_2" class="question_list_item">たたりき</li>
-                    <li id="correct_5" class="question_list_item">とどろき</li>
-                </ul>
-                <p id="questionCorrectAnswer_5" class="question_correct_answer"><b>正解！</b><br>正解は「とどろき」です！</p>
-                <p id="questionWrongAnswer_5" class="question_wrong_answer"><b>不正解！</b><br>正解は「とどろき」です！</p>
-            </div>
-            <div class="question">
-                <h2 class="question_title">6. この地名はなんて読む？</h2>
-                <img class="question_img" src="https://d1khcm40x1j0f.cloudfront.net/quiz/0b6789cf496fb75191edf1e3a6e05039.png" alt="たかなわ">
-                <ul class="question_list">
-                    <li id="wrong_6_1" class="question_list_item">せきこうい</li>
-                    <li id="wrong_6_2" class="question_list_item">いじい</li>
-                    <li id="correct_6" class="question_list_item">しゃくじい</li>
-                </ul>
-                <p id="questionCorrectAnswer_6" class="question_correct_answer"><b>正解！</b><br>正解は「しゃくじい」です！</p>
-                <p id="questionWrongAnswer_6" class="question_wrong_answer"><b>不正解！</b><br>正解は「しゃくじい」です！</p>
-            </div>
-            <div class="question">
-                <h2 class="question_title">7. この地名はなんて読む？</h2>
-                <img class="question_img" src="https://d1khcm40x1j0f.cloudfront.net/quiz/23e698eec548ff20a4f7969ca8823c53.png" alt="たかなわ">
-                <ul class="question_list">
-                    <li id="wrong_7_1" class="question_list_item">ざっしき</li>
-                    <li id="wrong_7_2" class="question_list_item">ざっしょく</li>
-                    <li id="correct_7" class="question_list_item">ぞうしき</li>
-                </ul>
-                <p id="questionCorrectAnswer_7" class="question_correct_answer"><b>正解！</b><br>正解は「ぞうしき」です！</p>
-                <p id="questionWrongAnswer_7" class="question_wrong_answer"><b>不正解！</b><br>正解は「ぞうしき」です！</p>
-            </div>
-            <div class="question">
-                <h2 class="question_title">8. この地名はなんて読む？</h2>
-                <img class="question_img" src="https://d1khcm40x1j0f.cloudfront.net/quiz/50a753d151d35f8602d2c3e2790ea6e4.png" alt="たかなわ">
-                <ul class="question_list">
-                    <li id="wrong_8_1" class="question_list_item">ごしろちょう</li>
-                    <li id="wrong_8_2" class="question_list_item">みとちょう</li>
-                    <li id="correct_8" class="question_list_item">おかちまち</li>
-                </ul>
-                <p id="questionCorrectAnswer_8" class="question_correct_answer"><b>正解！</b><br>正解は「おかちまち」です！</p>
-                <p id="questionWrongAnswer_8" class="question_wrong_answer"><b>不正解！</b><br>正解は「おかちまち」です！</p>
-            </div>
-            <div class="question">
-                <h2 class="question_title">9. この地名はなんて読む？</h2>
-                <img class="question_img" src="https://d1khcm40x1j0f.cloudfront.net/words/8cad76c39c43e2b651041c6d812ea26e.png" alt="たかなわ">
-                <ul class="question_list">
-                    <li id="wrong_9_1" class="question_list_item">ろっこつ</li>
-                    <li id="wrong_9_2" class="question_list_item">しこね</li>
-                    <li id="correct_9" class="question_list_item">ししぼね</li>
-                </ul>
-                <p id="questionCorrectAnswer_9" class="question_correct_answer"><b>正解！</b><br>江戸川区にあります。</p>
-                <p id="questionWrongAnswer_9" class="question_wrong_answer"><b>不正解！</b><br>江戸川区にあります。</p>
-            </div>
-            <div class="question">
-                <h2 class="question_title">10. この地名はなんて読む？</h2>
-                <img class="question_img" src="https://d1khcm40x1j0f.cloudfront.net/words/34508ddb0789ee73471b9f17977e7c9c.png" alt="たかなわ">
-                <ul class="question_list">
-                    <li id="wrong_10_1" class="question_list_item">こばく</li>
-                    <li id="wrong_10_2" class="question_list_item">こしゃく</li>
-                    <li id="correct_10" class="question_list_item">こぐれ</li>
-                </ul>
-                <p id="questionCorrectAnswer_10" class="question_correct_answer"><b>正解！</b><br>正解は「こぐれ」です！</p>
-                <p id="questionWrongAnswer_10" class="question_wrong_answer"><b>不正解！</b><br>正解は「こぐれ」です！</p>
-            </div> -->
+        <!-- afterend -->
+        
+        
             <script src="kuizy.js"></script>
         </section>
     </main>
