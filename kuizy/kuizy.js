@@ -1,3 +1,18 @@
+
+const headerListItemHumburger = document.getElementById("headerListItemHumburger");
+const side = document.getElementById("side");
+headerListItemHumburger.onclick = function() {
+    side.style.display = "block";
+};
+side.onclick = function() {
+    side.style.display = "none";
+};
+
+
+
+
+
+
 // questionのidを取得
 const question = document.getElementById('question');
 // 選択肢のリスト作成
