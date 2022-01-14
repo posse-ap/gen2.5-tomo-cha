@@ -25,6 +25,7 @@ const selection = [
     ["せきこうい", "いじい", "しゃくじい"],
     ["ざっしき", "ざっしょく", "ぞうしき"],
     ["ごしろちょう", "みとちょう", "おかちまち"],
+    ["しこね","ろっこつ","ししぼね"],
     ["こばく", "こしゃく", "こぐれ"],
 ];
 
@@ -42,7 +43,19 @@ const img = [
     "https://d1khcm40x1j0f.cloudfront.net/words/8cad76c39c43e2b651041c6d812ea26e.png",
     "https://d1khcm40x1j0f.cloudfront.net/words/34508ddb0789ee73471b9f17977e7c9c.png",
 ];
-
+// 解答のリスト作成
+const answer = [
+    `正解は「${selection[0][2]}」です！`,
+    `正解は「${selection[1][2]}」です！`,
+    `正解は「${selection[2][2]}」です！`,
+    `正解は「${selection[3][2]}」です！`,
+    `正解は「${selection[4][2]}」です！`,
+    `正解は「${selection[5][2]}」です！`,
+    `正解は「${selection[6][2]}」です！`,
+    `正解は「${selection[7][2]}」です！`,
+    `江戸川区にあります`,
+    `正解は「${selection[9][2]}」です！`,
+]
 
 // htmlをjsで記入
 for (let i=0; i<10; i++ ) {
@@ -54,13 +67,12 @@ for (let i=0; i<10; i++ ) {
     ]
     // liの位置をランダムにする
     for(j=li.length-1 ; j>0; j--){
-
         r = Math.floor(Math.random()*(j+1))
         tmp = li[j]
         li[j] = li[r]
         li[r] = tmp
     }
-    // html本文をfor文で    表示する
+    // html本文をfor文で表示する
     let a =
         '<div class="question">'
             +`<h2 class="question_title">${i+1}. この地名はなんて読む？</h2>`
@@ -70,8 +82,8 @@ for (let i=0; i<10; i++ ) {
                 +`${li[1]}`
                 +`${li[2]}`
             +'</ul>'
-            +`<p id="questionCorrectAnswer_${i}_2" class="question_correct_answer"><b>正解！</b><br>正解は「${selection[i][2]}」です！</p>`
-            +`<p id="questionWrongAnswer_${i}" class="question_wrong_answer"><b>不正解！</b><br>正解は「${selection[i][2]}」です！</p>`
+            +`<p id="questionCorrectAnswer_${i}_2" class="question_correct_answer"><b>正解！</b><br>${answer[i]}</p>`
+            +`<p id="questionWrongAnswer_${i}" class="question_wrong_answer"><b>不正解！</b><br>${answer[i]}</p>`
         +'</div>';
     question.insertAdjacentHTML('beforeend', a);
 }
