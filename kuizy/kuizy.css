@@ -15,10 +15,7 @@
             /* text-align: center; */
         }
         
-        .underline {
-            display: inline-block;
-            position: relative;
-        }
+
         
         h2 {
             position: relative;
@@ -34,34 +31,42 @@
             transform: translateY(30px);
         }
         
-        .underline::after {
-            background-color: green;
-            display: block;
-            content: "あ";
-            position: absolute;
-            width: 240px;
-            height: 2px;
-            bottom: -5px;
-        }
         
         body {
             margin: 0 auto;
             width: 60%;
         }
-        
-        .choices {
+        ul {
+            list-style: none;
+        }
+        .choicesBox {
+
+        }
+        .choices .answerBox{
             background: white;
-            width: 700px;
+            width: 100%;
             height: 50px;
             margin: 10px;
+            padding-left: 10px;
             box-shadow: 0px 1px 3px rgb(204, 202, 202);
             justify-content: center;
             align-items: center;
             flex-direction: column;
             /* vertical-align: middle; */
             line-height: 50px;
+            font-weight: bold;
         }
         
-        ul {
-            list-style: none;
-        }
+
+
+
+        /* .answerBox{
+            background: rgb(216, 216, 216);
+            width: 100%;
+            margin: 10px;
+            padding-left: 10px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            line-height: 50px;
+        } */
