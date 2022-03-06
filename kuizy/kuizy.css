@@ -34,12 +34,10 @@
         body {
             margin: 0 auto;
             width: 60%;
+            margin-bottom: 100px;
         }
         ul {
             list-style: none;
-        }
-        .choicesBox {
-
         }
         .choices .answerBox{
             background: white;
@@ -72,4 +70,31 @@
 
         .unclick{
             pointer-events: none;
+        }
+        .unlook{
+            display: none;
+        }
+        .answer-true{
+            display: block;
+            background-color: gray;
+        }
+        .answer-true::before {
+            content: '';
+            position: absolute;
+            width: 48px;
+            height: 2px;
+            background-color: skyblue;
+            transform: translateY(20px);
+        }
+        .answer-false{
+            display: block;
+            background-color: gray;
+        }
+        .answer-false::before {
+            content: '';
+            position: absolute;
+            width: 48px;
+            height: 2px;
+            background-color: red;
+            transform: translateY(20px);
         }

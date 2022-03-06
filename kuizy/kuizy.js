@@ -22,6 +22,7 @@ const answers = [
     "こうじまち",
 ]
 
+function createhtml(){
 var contents = ""
 //選択肢の順番をランダムにする
 for (let i=0; i<choices.length; i++){
@@ -37,15 +38,14 @@ for (let i=0; i<choices.length; i++){
     contents +=  `<h2>${i+1}. この地名はなんて読む？</h2>`
             +`<img src=${img[i]} alt="">`
             +`<ul class="choicesBox">`
-            +`    <li id="choice_${i}_0" class="choices_${i}" onclick="check(0,${i},${a})">${choices[i][0]}</li>`
-            +`    <li id="choice_${i}_1" class="choices_${i}" onclick="check(1,${i},${a})">${choices[i][1]}</li>`
-            +`    <li id="choice_${i}_2" class="choices_${i}" onclick="check(2,${i},${a})">${choices[i][2]}</li>`
+            +`    <li id="choice_${i}_0" class="choices choices_${i}" onclick="check(0,${i},${a})">${choices[i][0]}</li>`
+            +`    <li id="choice_${i}_1" class="choices choices_${i}" onclick="check(1,${i},${a})">${choices[i][1]}</li>`
+            +`    <li id="choice_${i}_2" class="choices choices_${i}" onclick="check(2,${i},${a})">${choices[i][2]}</li>`
             +`</ul>`
             +`<ul class="answerBox">`
-            +`    <li id="answer_true_${i}" class="answer-true-${i}"><b>正解！</b><br>正解は${tmp}です</li>`
-            +`    <li id="answer_false_${i}" class="answer-false-${i}"><b>不正解！</b><br>正解は${tmp}です</li>`
+            +`    <li id="answer_true_${i}" class="answer-true-${i} unlook"><b>正解！</b><br>正解は${tmp}です</li>`
+            +`    <li id="answer_false_${i}" class="answer-false-${i} unlook"><b>不正解！</b><br>正解は${tmp}です</li>`
             +`</ul>`
-
 }
 
 
@@ -55,37 +55,43 @@ console.log(main)
 main.insertAdjacentHTML("beforeend", contents);
 
 
-
+}
 
 
 
 //②クリック時の処理を記述する
 //正解不正解を確認するための関数を作る
 function check(selection_id,index,valid_id){
-    console.log(valid_id)
-    console.log(index)
     // 選択肢をすべてクリックできないようにする
-    const choiceArray = document.querySelectorAll("#choices_" + index)
+    var choiceArray = document.getElementsByClassName("choices_" + index)
+    console.log(choiceArray)
+    choiceArray = Array.prototype.slice.call(choiceArray);
     choiceArray.forEach(function(ele){
         ele.classList.remove("choices_" + index)
         ele.classList.add("unclick")
-
+        console.log(ele)
     })
     // 正解の要素を取得する
     // 正解の要素を青色にする
-    const u = document.getElementById("choice_"+index+valid_id);
-    console.log(u)
+    document.getElementById("choice_"+index+"_"+valid_id).style.backgroundColor = "skyblue"
+    document.getElementById("choice_"+index+"_"+valid_id).style.color = "white"
 
 
     // クリックした要素が正解なら正解を表示する
     if (selection_id === valid_id){
-        document.getElementById("answer_true_"+index).display = "block"
+        const answerTrue = document.getElementById("answer_true_"+index)
+        answerTrue.classList.remove("unlook")
+        answerTrue.classList.add("answer-true")
     }
     // クリックした要素が不正解なら要素を赤色にして、不正解を表示する
     else{
-        document.getElementById("choice_"+index+selection_id).style.backgroundColor = "red"
-        document.getElementById("answer_false_"+index).display = "block"
+        document.getElementById("choice_"+index+"_"+selection_id).style.backgroundColor = "red"
+        const answerFalse = document.getElementById("answer_false_"+index)
+        answerFalse.classList.add("unlook")
+        answerFalse.classList.add("answer-false")
     }
 
 
 }
+
+window.onload = createhtml();
