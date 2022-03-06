@@ -5,7 +5,6 @@
         
         body {
             font-family: sans-serif;
-            background-image: url(IMG_2963.heic);
             background-size: 100px 100px;
             margin: 0 auto;
         }
@@ -70,3 +69,7 @@
             flex-direction: column;
             line-height: 50px;
         } */
+
+        .unclick{
+            pointer-events: none;
+        }
