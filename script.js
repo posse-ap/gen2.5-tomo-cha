@@ -9,6 +9,9 @@ const modal = document.getElementById("modal")
     const record = document.getElementById("record")
         const modalButton = document.getElementById("modalButton")
         const calendarBox = document.getElementById("calendarBox")
+        const twitterShareButton = document.getElementById("twitterShareButton")
+        const twitterNewTab = document.getElementById("twitterNewTab")
+const twitterComment = document.getElementById("twitterComment")
     const calendarWrapper = document.getElementById("calendarWrapper")
         const calendarButton = document.getElementById("calendarButton")
     const load = document.getElementById("load")
@@ -47,8 +50,15 @@ backButton.addEventListener("click", function(){
 })
 
 
-// モーダルで記録・投稿をクリックしたらローディングが３秒表示され、その後完了画面が表示される
+// モーダルで記録・投稿をクリックしたら
 modalButton.addEventListener("click", function(){
+    // // twitterシェアが有効になっていたら、新規タブでtextareaの内容をツイートする画面を開く
+    // if(twitterShareButton.classList.contains("active")){
+    //     window.open(`http://twitter.com/share?text=${twitterComment.value}`)
+    // }else{
+    //     ;
+    // }
+    // ローディングが５秒表示され、その後完了画面が表示される
     record.classList.remove("active")
     load.classList.add("active")
     overlay.classList.add("disable")
@@ -59,6 +69,7 @@ modalButton.addEventListener("click", function(){
         overlay.classList.remove("disable")
         closeButton.classList.remove("disable")
     },5000)
+
 })
 // モーダルで記録・投稿をクリックしたときエラーなら、エラー画面が表示される
 
@@ -357,3 +368,11 @@ function addCheck(number) {
     const checkItems = document.getElementsByName("check_item")
     checkItems[number].classList.toggle("active")
 }
+modalButton.addEventListener("click", function(){
+    // twitterシェアが有効になっていたら、新規タブでtextareaの内容をツイートする画面を開く
+    if(twitterShareButton.classList.contains("active")){
+        window.open(`http://twitter.com/share?text=${twitterComment.value}`)
+    }else{
+        ;
+    }
+})

@@ -579,9 +579,6 @@
                             border-bottom: 2px solid #ffffff;
                             transform: rotate(-45deg);
                         }
-                        &.active{
-                            background-color: #e7f5ff;
-                        }
                         &.active::before{
                             background-color: #0f71bd;
                             color: #0f71bd;
@@ -604,6 +601,9 @@
                 margin: 22px auto;
                 &:hover{
                     opacity: .8;
+                }
+                a{
+                    display: block;
                 }
             }
         }

@@ -581,9 +581,6 @@ html {
   border-bottom: 2px solid #ffffff;
   transform: rotate(-45deg);
 }
-.modal .record .info .modal_column2 .twitter_check.active {
-  background-color: #e7f5ff;
-}
 .modal .record .info .modal_column2 .twitter_check.active::before {
   background-color: #0f71bd;
   color: #0f71bd;
@@ -603,6 +600,9 @@ html {
 }
 .modal .record .header_button:hover {
   opacity: 0.8;
+}
+.modal .record .header_button a {
+  display: block;
 }
 .modal .calendar_wrapper {
   position: fixed;
