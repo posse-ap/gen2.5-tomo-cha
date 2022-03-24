@@ -240,6 +240,9 @@ const week = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat",]
 // recordの学習日に入るテキストを"今日"に設定
 var calendarBoxHTML = `${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日`
 calendarBox.innerHTML = calendarBoxHTML;
+// topページのfooterの日付
+var todayMonth = today.getMonth()+1
+footerDate.innerHTML = `${today.getFullYear()}年　${todayMonth}月`
 
 
 // 今日の月の１日というDateオブジェクトを取ってくる
