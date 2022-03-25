@@ -52,12 +52,6 @@ backButton.addEventListener("click", function(){
 
 // モーダルで記録・投稿をクリックしたら
 modalButton.addEventListener("click", function(){
-    // // twitterシェアが有効になっていたら、新規タブでtextareaの内容をツイートする画面を開く
-    // if(twitterShareButton.classList.contains("active")){
-    //     window.open(`http://twitter.com/share?text=${twitterComment.value}`)
-    // }else{
-    //     ;
-    // }
     // ローディングが５秒表示され、その後完了画面が表示される
     record.classList.remove("active")
     load.classList.add("active")
@@ -209,7 +203,7 @@ const circle_contents_editor = [
         pieSliceTextStyle: {
             fontSize: 8,
         },
-        'chartArea': {'width': '95%', 'height': '95%'}
+        'chartArea': {'width': '100%', 'height': '100%'}
       }
       //円（言語）グラフのDOMと紐付け
       const circle_lang_chart = new google.visualization.PieChart(document.getElementById('langGraph'));
@@ -227,7 +221,7 @@ const circle_contents_editor = [
         legend: {position: "none"},
         colors: ["#1754ef", "#0f71bd", "#20bdde"],
         pieHole: 0.4,
-        'chartArea': {'width': '95%', 'height': '95%'}
+        'chartArea': {'width': '100%', 'height': '100%'}
       }
       //円（コンテンツ）グラフのDOMと紐付け
       const circle_contents_chart = new google.visualization.PieChart(document.getElementById('contentGraph'));
@@ -362,12 +356,6 @@ calendarBox.addEventListener("click",showProcess(today))
 
 
 // ５．ツイッター
-// クリックしたらチェックの背景を青色にする。二回クリックしたら白に戻す。
-// チェックの背景を変更する関数
-function addCheck(number) {
-    const checkItems = document.getElementsByName("check_item")
-    checkItems[number].classList.toggle("active")
-}
 modalButton.addEventListener("click", function(){
     // twitterシェアが有効になっていたら、新規タブでtextareaの内容をツイートする画面を開く
     if(twitterShareButton.classList.contains("active")){
@@ -376,3 +364,12 @@ modalButton.addEventListener("click", function(){
         ;
     }
 })
+
+//　記録
+// クリックしたらチェックの背景を青色にする。二回クリックしたら白に戻す。
+// チェックの背景を変更する関数
+function addCheck(number) {
+    const checkItems = document.getElementsByName("check_item")
+    checkItems[number].classList.toggle("active")
+}
+
