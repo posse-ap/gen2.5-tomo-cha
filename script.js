@@ -20,41 +20,44 @@ const footerDate = document.getElementById("footerDate")
 const footerButton = document.getElementById("footerButton")
 
 // ２．画面遷移
-// pcでヘッダーの記録・投稿をクリックしたらoverlay、modal、record、closeButtonが表示される。
-// smでフッターの記録・投稿をクリックしたらoverlay、モーダル、recordが表示される
-headerButton.addEventListener("click",function(){
+// 関数制作
+// topからmodal>recordが表示される関数
+function displayModal(){
     overlay.classList.add("active")
     modal.classList.add("active")
     record.classList.add("active")
     closeButton.classList.add("active")
-})
-footerButton.addEventListener("click",function(){
-    overlay.classList.add("active")
-    modal.classList.add("active")
-    record.classList.add("active")
-    closeButton.classList.add("active")
-})
-// モーダルで学習日をクリックしたらカレンダー、backButtonが表示される
-calendarBox.addEventListener("click",function(){
+}
+// modalからtopページに戻る関数
+function returnTop(){
+    overlay.classList.remove("active")
+    modal.classList.remove("active")
+    closeButton.classList.remove("active")
+    record.classList.remove("active")
+    calendarWrapper.classList.remove("active")
+    backButton.classList.remove("active")
+    complete.classList.remove("active")
+}
+// recordからcalendarを表示する関数
+function displayCalendar(){
     record.classList.remove("active")
     closeButton.classList.remove("active")
     calendarWrapper.classList.add("active")
     backButton.classList.add("active")
-})
-// カレンダーで戻るボタンをクリックしたらrecordが表示される
-backButton.addEventListener("click", function(){
+}
+// calendarからrecordに戻る
+function returnRecord(){
     calendarWrapper.classList.remove("active")
     backButton.classList.remove("active")
     record.classList.add("active")
     closeButton.classList.add("active")
-})
-
-
-// モーダルで記録・投稿をクリックしたら
-modalButton.addEventListener("click", function(){
+}
+// recordからloading->completeに変化する
+function lording(){
     // ローディングが５秒表示され、その後完了画面が表示される
     record.classList.remove("active")
     load.classList.add("active")
+    // modalを閉じさせない
     overlay.classList.add("disable")
     closeButton.classList.add("disable")
     setTimeout(function(){
@@ -63,29 +66,24 @@ modalButton.addEventListener("click", function(){
         overlay.classList.remove("disable")
         closeButton.classList.remove("disable")
     },5000)
+}
+// pcでヘッダーの記録・投稿をクリックしたらoverlay、modal、record、closeButtonが表示される。
+// smでフッターの記録・投稿をクリックしたらoverlay、モーダル、recordが表示される
+headerButton.addEventListener("click",displayModal())
+footerButton.addEventListener("click",displayModal())
+// モーダルで学習日をクリックしたらカレンダー、backButtonが表示される
+calendarBox.addEventListener("click",displayCalendar())
+// カレンダーで戻るボタンをクリックしたらrecordが表示される
+backButton.addEventListener("click", returnRecord())
 
-})
+
+// モーダルで記録・投稿をクリックしたら
+modalButton.addEventListener("click", loading())
 // モーダルで記録・投稿をクリックしたときエラーなら、エラー画面が表示される
 
 // どの画面の状態でも、×印もしくはoverlayがクリックされるとoverlayとモーダルが隠される
-closeButton.addEventListener("click", function(){
-    overlay.classList.remove("active")
-    modal.classList.remove("active")
-    closeButton.classList.remove("active")
-    record.classList.remove("active")
-    calendarWrapper.classList.remove("active")
-    backButton.classList.remove("active")
-    complete.classList.remove("active")
-})
-overlay.addEventListener("click", function(){
-    overlay.classList.remove("active")
-    modal.classList.remove("active")
-    closeButton.classList.remove("active")
-    record.classList.remove("active")
-    calendarWrapper.classList.remove("active")
-    backButton.classList.remove("active")
-    complete.classList.remove("active")
-})
+closeButton.addEventListener("click", returnTop())
+overlay.addEventListener("click", returnTop())
 
 // ３．グラフ
 // グラフ関連の変数。後述のticks。偶数のみ配列に追加する。
