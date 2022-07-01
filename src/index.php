@@ -17,7 +17,7 @@
         </div>
     </header>
     <main>
-        <div　class="mainInner">
+        <div class="mainInner">
             <article>
                 <h2>1. この地名はなんて読む？</h2>
                 <img src="https://d1khcm40x1j0f.cloudfront.net/quiz/34d20397a2a506fe2c1ee636dc011a07.png" alt="たかなわ">
