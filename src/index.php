@@ -42,16 +42,6 @@ if ($res) {
 }
 $i = 0;
 
-$stmt = $pdo->prepare("SELECT * FROM choices WHERE big_question_id = :big_question_id and question_id = :question_id");
-//登録するデータをセット
-$stmt->bindParam(':big_question_id', $id, PDO::PARAM_INT);
-$stmt->bindParam(':question_id', $i, PDO::PARAM_INT);
-//SQL実行
-$res = $stmt->execute();
-//該当するデータを取得
-if ($res) {
-    $selection_data = $stmt->fetchAll();
-}
 
 
 //headerの埋め込み
@@ -72,13 +62,37 @@ include('./_parts/_header.php')
                 <img class="question_img" src="./img/<?= $e['image'] ?>" alt=""><!-- 画像-->
                 <ul id="questionList_<?= $i ?>" class="question_list">
                     <!-- 選択肢-->
-                    <li id="wrong_<?= $i ?>_0" onclick="check(<?= $i ?>, 0)" class="question_list_item"><?= $selection_data[0]['name'] ?></li>
-                    <li id="wrong_<?= $i ?>_1" onclick="check(<?= $i ?>, 1)" class="question_list_item"><?= $selection_data[1]['name'] ?></li>
-                    <li id="correct_<?= $i ?>_2" onclick="check(<?= $i ?>, 2)" class="question_list_item"><?= $selection_data[2]['name'] ?></li>
+                    <?php
+                    $stmt = $pdo->prepare("SELECT * FROM choices WHERE big_question_id = :big_question_id and question_id = :question_id");
+                    //登録するデータをセット
+                    $stmt->bindParam(':big_question_id', $id, PDO::PARAM_INT);
+                    $stmt->bindParam(':question_id', $i, PDO::PARAM_INT);
+                    //SQL実行
+                    $res = $stmt->execute();
+                    //該当するデータを取得
+                    if ($res) {
+                        $selection_data = $stmt->fetchAll();
+                    }
+                    $selection0 = $selection_data[0]['name'];
+                    $selection1 = $selection_data[1]['name'];
+                    $selection2 = $selection_data[2]['name'];
+                    $li1 = "<li id='wrong_$i-0' onclick='check($i, 0)' class='question_list_item'>$selection0</li>";
+                    $li2 = "<li id=\"wrong_$i-1\" onclick=\"check($i, 1)\" class=\"question_list_item\">$selection1</li>";
+                    $li3 = "<li id=\"correct_$i-2\" onclick=\"check($i, 2)\" class=\"question_list_item\">$selection2</li>";
+                    $lies = array(
+                        $li1,
+                        $li2,
+                        $li3
+                    );
+                    shuffle($lies);
+                    foreach($lies as $value){
+                        echo $value;
+                        echo "\n";
+                    }
+                    ?>
                 </ul>
-                <p id="questionCorrectAnswer_<?= $i ?>_2" class="question_correct_answer"><b>正解！</b><br><?= $e['image'] ?></p><!-- 正解box-->
-                <p id="questionWrongAnswer_<?= $i ?>" class="question_wrong_answer"><b>不正解！</b><br><?= $e['image'] ?></p><!-- 不正解box-->
-            </div>
+                <p id="questionCorrectAnswer_<?= $i ?>_2" class="question_correct_answer"><b>正解！</b><br>正解は<?= $selection_data[2]['name'] ?>です。</p><!-- 正解box-->
+                <p id="questionWrongAnswer_<?= $i ?>" class="question_wrong_answer"><b>不正解！</b><br>正解は<?= $selection_data[2]['name'] ?>です。</p><!-- 不正解box-->
             </div>
         <?php endforeach; ?>
         <!-- beforeend -->
