@@ -6,7 +6,7 @@ $PASSWORD = 'password';
 try {
     // データベースに接続
     $pdo = new PDO($DSN, $USER, $PASSWORD);
-    echo "接続OK！" . "n";
+    // echo "接続OK！" . "n";
 } catch (PDOException $e) {
     echo 'DB接続エラー！: ' . $e->getMessage();
 }

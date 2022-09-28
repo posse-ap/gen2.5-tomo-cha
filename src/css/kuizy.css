@@ -44,11 +44,6 @@
             bottom: -5px;
         }
         
-        body {
-            margin: 0 auto;
-            width: 60%;
-        }
-        
         .choices {
             background: white;
             width: 700px;
@@ -73,9 +68,14 @@
             /* z-index: 0; */
             background: #ffffff;
         }
+        .header_contents_wrapper{
+            display: flex;
+            justify-content: space-between;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
         /* 左側部分　ハンバーガーとkuizyの文字 */
         .header_list_left {
-            margin-left: 30%;
             margin-top: 5px;
             display: inline-block;
         }
@@ -92,9 +92,7 @@
         }
         /* 右側部分「クイズ・診断をつくる」と「検索」 */
         .header_list_right {
-            float: right;
-            margin-right: 30%;
-            margin-bottom: 7px;
+            margin-top: 7px;
             vertical-align: middle;
         }
         /* クイズ・診断をつくる */
