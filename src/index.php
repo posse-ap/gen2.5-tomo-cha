@@ -42,10 +42,10 @@ if ($res) {
 }
 $i = 0;
 
-//SQL作成
-$stmt = $pdo->prepare("SELECT * FROM choices WHERE big_question_id = :big_question_id");
+$stmt = $pdo->prepare("SELECT * FROM choices WHERE big_question_id = :big_question_id and question_id = :question_id");
 //登録するデータをセット
 $stmt->bindParam(':big_question_id', $id, PDO::PARAM_INT);
+$stmt->bindParam(':question_id', $i, PDO::PARAM_INT);
 //SQL実行
 $res = $stmt->execute();
 //該当するデータを取得
@@ -60,9 +60,8 @@ include('./_parts/_header.php')
 ?>
 <main class="main">
     <h1 class="title"><?= $title ?></h1>
-    <?php foreach ($selection_data as $ele) : ?>
-        <p><?= $ele['name'] ?></p>
-    <?php endforeach; ?>
+
+    <p><?= $selection_data[0]['name']; ?></p>
     <section class="quiz">
         <!-- beforebegin -->
         <!-- afterbegin -->
@@ -73,9 +72,9 @@ include('./_parts/_header.php')
                 <img class="question_img" src="./img/<?= $e['image'] ?>" alt=""><!-- 画像-->
                 <ul id="questionList_<?= $i ?>" class="question_list">
                     <!-- 選択肢-->
-                    <li id="wrong_<?= $i ?>_0" onclick="check(<?= $i ?>, 0)" class="question_list_item"></li>
-                    <li id="wrong_<?= $i ?>_1" onclick="check(<?= $i ?>, 1)" class="question_list_item"></li>
-                    <li id="correct_<?= $i ?>_2" onclick="check(<?= $i ?>, 2)" class="question_list_item"></li>
+                    <li id="wrong_<?= $i ?>_0" onclick="check(<?= $i ?>, 0)" class="question_list_item"><?= $selection_data[0]['name'] ?></li>
+                    <li id="wrong_<?= $i ?>_1" onclick="check(<?= $i ?>, 1)" class="question_list_item"><?= $selection_data[1]['name'] ?></li>
+                    <li id="correct_<?= $i ?>_2" onclick="check(<?= $i ?>, 2)" class="question_list_item"><?= $selection_data[2]['name'] ?></li>
                 </ul>
                 <p id="questionCorrectAnswer_<?= $i ?>_2" class="question_correct_answer"><b>正解！</b><br><?= $e['image'] ?></p><!-- 正解box-->
                 <p id="questionWrongAnswer_<?= $i ?>" class="question_wrong_answer"><b>不正解！</b><br><?= $e['image'] ?></p><!-- 不正解box-->
