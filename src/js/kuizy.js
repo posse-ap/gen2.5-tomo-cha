@@ -58,35 +58,35 @@ const answer = [
 ]
 
 // htmlをjsで記入
-for (let i=0; i<10; i++ ) {
-    // 選択肢のliをまるごとリストにする
-    const li = [
-        `<li id="wrong_${i}_0" onclick="check(${i}, 0)" class="question_list_item">${selection[i][0]}</li>`,
-        `<li id="wrong_${i}_1" onclick="check(${i}, 1)" class="question_list_item">${selection[i][1]}</li>`,
-        `<li id="correct_${i}_2" onclick="check(${i}, 2)" class="question_list_item">${selection[i][2]}</li>`
-    ]
-    // liの位置をランダムにする
-    for(j=li.length-1 ; j>0; j--){
-        r = Math.floor(Math.random()*(j+1))
-        tmp = li[j]
-        li[j] = li[r]
-        li[r] = tmp
-    }
-    // html本文をfor文で表示する
-    let a =
-        '<div class="question">'
-            +`<h2 class="question_title">${i+1}. この地名はなんて読む？</h2>`
-            +`<img class="question_img" src=${img[i]} alt="${selection[i][2]}">`
-            +`<ul id="questionList_${i}" class="question_list">`
-                +`${li[0]}`
-                +`${li[1]}`
-                +`${li[2]}`
-            +'</ul>'
-            +`<p id="questionCorrectAnswer_${i}_2" class="question_correct_answer"><b>正解！</b><br>${answer[i]}</p>`
-            +`<p id="questionWrongAnswer_${i}" class="question_wrong_answer"><b>不正解！</b><br>${answer[i]}</p>`
-        +'</div>';
-    question.insertAdjacentHTML('beforeend', a);
-}
+// for (let i=0; i<10; i++ ) {
+//     // 選択肢のliをまるごとリストにする
+    // const li = [
+    //     `<li id="wrong_${i}_0" onclick="check(${i}, 0)" class="question_list_item">${selection[i][0]}</li>`,
+    //     `<li id="wrong_${i}_1" onclick="check(${i}, 1)" class="question_list_item">${selection[i][1]}</li>`,
+    //     `<li id="correct_${i}_2" onclick="check(${i}, 2)" class="question_list_item">${selection[i][2]}</li>`
+    // ]
+    // // liの位置をランダムにする
+    // for(j=li.length-1 ; j>0; j--){
+    //     r = Math.floor(Math.random()*(j+1))
+    //     tmp = li[j]
+    //     li[j] = li[r]
+    //     li[r] = tmp
+    // }
+//     // html本文をfor文で表示する
+//     let a =
+//         '<div class="question">'
+//             +`<h2 class="question_title">${i+1}. この地名はなんて読む？</h2>`
+//             +`<img class="question_img" src=${img[i]} alt="${selection[i][2]}">`
+//             +`<ul id="questionList_${i}" class="question_list">`
+//                 +`${li[0]}`
+//                 +`${li[1]}`
+//                 +`${li[2]}`
+//             +'</ul>'
+//             +`<p id="questionCorrectAnswer_${i}_2" class="question_correct_answer"><b>正解！</b><br>${answer[i]}</p>`
+//             +`<p id="questionWrongAnswer_${i}" class="question_wrong_answer"><b>不正解！</b><br>${answer[i]}</p>`
+//         +'</div>';
+//     question.insertAdjacentHTML('beforeend', a);
+// }
 // 36~38のcheckの関数question_numberは大問番号、selection_numberは選択肢の番号を表す
 function check(question_number, selection_number) {
     // 不正解ボタンを押したとき、idを取得
