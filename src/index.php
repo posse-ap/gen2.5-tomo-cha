@@ -26,21 +26,7 @@ $res = $stmt->execute();
 if ($res) {
     $data = $stmt->fetchAll();
 }
-foreach ($data as $e) :
-    $title = $e['name'];
-endforeach;
 
-//SQL作成
-$stmt = $pdo->prepare("SELECT * FROM questions WHERE big_question_id = :big_question_id");
-//登録するデータをセット
-$stmt->bindParam(':big_question_id', $id, PDO::PARAM_INT);
-//SQL実行
-$res = $stmt->execute();
-//該当するデータを取得
-if ($res) {
-    $img_data = $stmt->fetchAll();
-}
-$i = 0;
 
 
 
@@ -48,57 +34,149 @@ $i = 0;
 include('./_parts/_header.php')
 
 ?>
+<!-- main -->
 <main class="main">
-    <h1 class="title"><?= $title ?></h1>
-
-    <p><?= $selection_data[0]['name']; ?></p>
-    <section class="quiz">
-        <!-- beforebegin -->
-        <!-- afterbegin -->
-        <?php foreach ($img_data as $e) : ?>
-            <?php $i += 1 ?>
-            <div id="question">
-                <h2 class="question_title"><?= $i ?>. この地名はなんて読む？</h2> <!-- 問題番号-->
-                <img class="question_img" src="./img/<?= $e['image'] ?>" alt=""><!-- 画像-->
-                <ul id="questionList_<?= $i ?>" class="question_list">
-                    <!-- 選択肢-->
-                    <?php
-                    $stmt = $pdo->prepare("SELECT * FROM choices WHERE big_question_id = :big_question_id and question_id = :question_id");
-                    //登録するデータをセット
-                    $stmt->bindParam(':big_question_id', $id, PDO::PARAM_INT);
-                    $stmt->bindParam(':question_id', $i, PDO::PARAM_INT);
-                    //SQL実行
-                    $res = $stmt->execute();
-                    //該当するデータを取得
-                    if ($res) {
-                        $selection_data = $stmt->fetchAll();
-                    }
-                    $selection0 = $selection_data[0]['name'];
-                    $selection1 = $selection_data[1]['name'];
-                    $selection2 = $selection_data[2]['name'];
-                    $li1 = "<li id='wrong_$i-0' onclick='check($i, 0)' class='question_list_item'>$selection0</li>";
-                    $li2 = "<li id=\"wrong_$i-1\" onclick=\"check($i, 1)\" class=\"question_list_item\">$selection1</li>";
-                    $li3 = "<li id=\"correct_$i-2\" onclick=\"check($i, 2)\" class=\"question_list_item\">$selection2</li>";
-                    $lies = array(
-                        $li1,
-                        $li2,
-                        $li3
-                    );
-                    shuffle($lies);
-                    foreach($lies as $value){
-                        echo $value;
-                        echo "\n";
-                    }
-                    ?>
-                </ul>
-                <p id="questionCorrectAnswer_<?= $i ?>_2" class="question_correct_answer"><b>正解！</b><br>正解は<?= $selection_data[2]['name'] ?>です。</p><!-- 正解box-->
-                <p id="questionWrongAnswer_<?= $i ?>" class="question_wrong_answer"><b>不正解！</b><br>正解は<?= $selection_data[2]['name'] ?>です。</p><!-- 不正解box-->
+        <!-- 全体 -->
+        <div class="container">
+            <!-- 左側 -->
+            <div class="column1">
+                <!-- 左上側 -->
+                <div class="wrapper1">
+                    <ul class="item_contents">
+                        <li class="item_label">Today</li>
+                        <li class="item_number">3</li>
+                        <li class="item_hour">hour</li>
+                    </ul>
+                    <ul class="item_contents">
+                        <li class="item_label">Month</li>
+                        <li class="item_number">120</li>
+                        <li class="item_hour">hour</li>
+                    </ul>
+                    <ul class="item_contents">
+                        <li class="item_label">Total</li>
+                        <li class="item_number">1348</li>
+                        <li class="item_hour">hour</li>
+                    </ul>
+                </div>
+                <!-- 左下側 -->
+                <div class="wrapper2">
+                    <div id="barGraph" class="bar_graph" style="width:100%">
+                    </div>
+                </div>
             </div>
-        <?php endforeach; ?>
-        <!-- beforeend -->
-        <!-- afterend -->
-    </section>
-</main>
+            <!-- 右側 -->
+            <div class="column2">
+                <!-- 右左側 -->
+                <ul class="circle_graph circle_graph1">
+                    <li class="item_title">学習言語</li>
+                    <div id="langGraph" class="item_graph" style="width:100%">
+                    </div>
+                    <!-- <img class="item_graph" src="./img/スクリーンショット 2022-03-10 11.29.04.png" alt=""> -->
+                    <ul class="lang">
+                        <li class="lang_item lang_html">HTML</li>
+                        <li class="lang_item lang_js">JavaScript</li>
+                        <li class="lang_item lang_css">CSS</li>
+                        <li class="lang_item lang_php">PHP</li>
+                        <li class="lang_item lang_lara">Laravel</li>
+                        <li class="lang_item lang_sql">SQL</li>
+                        <li class="lang_item lang_shell">SHELL</li>
+                        <li class="lang_item lang_others">情報システム基礎知識（その他）</li>
+                    </ul>
+                </ul>
+                <!-- 右右側 -->
+                <ul class="circle_graph circle_graph2">
+                    <li class="item_title">学習コンテンツ</li>
+                    <div id="contentGraph" class="item_graph" style="width:100%">
+                    </div>
+                    <!-- <img class="item_graph" src="./img/スクリーンショット 2022-03-10 12.21.45.png" alt=""> -->
+                    <ul class="contents">
+                        <li class="content content_dot">ドットインストール</li>
+                        <li class="content content_nyobi">N予備校</li>
+                        <li class="content content_posse">POSSE課題</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <!-- オーバーレイ -->
+        <div id="overlay" class="overlay"></div>
+
+        <!-- モーダルウィンドウ -->
+        <div id="modal" class="modal">
+            <!-- 閉じるボタン -->
+            <div id="closeButton" class="close">×</div>
+            <!-- 戻るボタン -->
+            <!-- カレンダー画面でのみ表示 -->
+            <div id="backButton" class="back">←</div>
+            <!-- 記録画面 -->
+            <div id="record" class="record">
+                <div class="info">
+                    <!-- 記録左側 -->
+                    <div class="modal_column1">
+                        <div class="wrapper_date">
+                            <p class="date_text">学習日</p>
+                            <p id="calendarBox" class="date_calendar"></p>
+                        </div>
+                        <div class="wrapper_contents">
+                            <p class="contents_text">学習コンテンツ（複数選択可）</p>
+                            <ul class="contents">
+                                <li name="check_item" class="content_item" onclick='addCheck(0)'>N予備校</li>
+                                <li name="check_item" class="content_item" onclick='addCheck(1)'>ドットインストール</li>
+                                <li name="check_item" class="content_item" onclick='addCheck(2)'>POSSE課題</li>
+                            </ul>
+                        </div>
+                        <div class="wrapper_langs">
+                            <p class="langs_text">学習言語（複数選択可）</p>
+                            <ul class="langs_list">
+                                <li name="check_item" class="lang_item" onclick='addCheck(3)'>CSS</li>
+                                <li name="check_item" class="lang_item" onclick='addCheck(4)'>HTML</li>
+                                <li name="check_item" class="lang_item" onclick='addCheck(5)'>JavaScript</li>
+                                <li name="check_item" class="lang_item" onclick='addCheck(6)'>PHP</li>
+                                <li name="check_item" class="lang_item" onclick='addCheck(7)'>Laravel</li>
+                                <li name="check_item" class="lang_item" onclick='addCheck(8)'>SQL</li>
+                                <li name="check_item" class="lang_item" onclick='addCheck(9)'>SHELL</li>
+                                <li name="check_item" class="lang_item" onclick='addCheck(10)'>情報システム基礎知識（その他）</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 記録右側 -->
+                    <div class="modal_column2">
+                        <div class="wrapper_time">
+                            <p class="time_text">学習時間</p>
+                            <input class="time_textarea"></input>
+                        </div>
+                        <div class="wrapper_twitter">
+                            <p class="twitter_text">Twitter用コメント</p>
+                            <textarea id="twitterComment" class="twitter_textarea" minlength="1" maxlength="140"></textarea>
+                        
+                        </div>
+                        <p id="twitterShareButton" name="check_item" class="twitter_check" onclick='addCheck(11)'>Twitterにシェアする</p>
+                    </div>
+                </div>
+                <button id="modalButton" class="header_button"><a id="twitterNewTab" target="_blank" rel="noopener noreferrer">記録・投稿</a></button>
+            </div>
+            <!-- カレンダー画面 -->
+            <div id="calendarWrapper" class="calendar_wrapper">
+                <button class="cal_left" onclick="prev()">＜</button>
+                <span id="calDate" class="cal_date"></span>
+                <button class="cal_right" onclick="next()">＞</button>
+                <div id="calendar" class="calendar"></div>
+                <button id="calendarButton" class="header_button">決定</button>
+            </div>
+            <!-- ローディング画面 -->
+            <div id="load" class="load">
+                <img src="./img/D1FB273F-7C3B-4F47-A255-F97C61E49253.jpeg" alt="">
+            </div>
+            <!-- 投稿完了画面 -->
+            <div id="complete" class="complete">
+                <img src="./img/2AE8BD05-5028-4852-9478-F5CC79CCEF29.jpeg" alt="">
+            </div>
+        </div>
+        <!-- エラー画面 -->
+        <div id="error" class="error">
+            <img src="./img/スクリーンショット 2022-03-24 19.53.33.png" alt="">
+        </div>
+    </main>
+    <!-- main -->
 
 <?php
 
