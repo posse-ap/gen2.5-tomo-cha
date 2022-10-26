@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>posse課題-自主課題</title>
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/style.scss">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- header -->

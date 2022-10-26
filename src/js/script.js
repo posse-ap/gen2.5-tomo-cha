@@ -9,6 +9,7 @@ const modal = document.getElementById("modal")
     const record = document.getElementById("record")
         const modalButton = document.getElementById("modalButton")
         const calendarBox = document.getElementById("calendarBox")
+        const checkItems = document.getElementsByName("check_item")
         const twitterShareButton = document.getElementById("twitterShareButton")
         const twitterNewTab = document.getElementById("twitterNewTab")
 const twitterComment = document.getElementById("twitterComment")
@@ -18,6 +19,7 @@ const twitterComment = document.getElementById("twitterComment")
     const complete = document.getElementById("complete")
 const footerDate = document.getElementById("footerDate")
 const footerButton = document.getElementById("footerButton")
+
 
 // ２．画面遷移
 // 関数制作
@@ -37,6 +39,17 @@ function returnTop(){
     calendarWrapper.classList.remove("active")
     backButton.classList.remove("active")
     complete.classList.remove("active")
+    // チェックのリセット
+    for(let i=0; i<checkItems.length; i++){
+        checkItems[i].classList.remove("active")
+    }
+    //calenderの日付のリセット
+    const today = new Date();
+    var calendarBoxHTML = `${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日`
+    calendarBox.innerHTML = calendarBoxHTML;
+    //twitterコメントのリセット
+    twitterComment.value = "";
+    
 }
 // recordからcalendarを表示する関数
 function displayCalendar(){
@@ -53,7 +66,7 @@ function returnRecord(){
     closeButton.classList.add("active")
 }
 // recordからloading->completeに変化する
-function lording(){
+function loading(){
     // ローディングが５秒表示され、その後完了画面が表示される
     record.classList.remove("active")
     load.classList.add("active")
@@ -69,21 +82,21 @@ function lording(){
 }
 // pcでヘッダーの記録・投稿をクリックしたらoverlay、modal、record、closeButtonが表示される。
 // smでフッターの記録・投稿をクリックしたらoverlay、モーダル、recordが表示される
-headerButton.addEventListener("click",displayModal())
-footerButton.addEventListener("click",displayModal())
+headerButton.addEventListener("click",displayModal)
+footerButton.addEventListener("click",displayModal)
 // モーダルで学習日をクリックしたらカレンダー、backButtonが表示される
-calendarBox.addEventListener("click",displayCalendar())
+calendarBox.addEventListener("click",displayCalendar)
 // カレンダーで戻るボタンをクリックしたらrecordが表示される
-backButton.addEventListener("click", returnRecord())
+backButton.addEventListener("click", returnRecord)
 
 
 // モーダルで記録・投稿をクリックしたら
-modalButton.addEventListener("click", loading())
+modalButton.addEventListener("click", loading)
 // モーダルで記録・投稿をクリックしたときエラーなら、エラー画面が表示される
 
 // どの画面の状態でも、×印もしくはoverlayがクリックされるとoverlayとモーダルが隠される
-closeButton.addEventListener("click", returnTop())
-overlay.addEventListener("click", returnTop())
+closeButton.addEventListener("click", returnTop)
+overlay.addEventListener("click", returnTop)
 
 // ３．グラフ
 // グラフ関連の変数。後述のticks。偶数のみ配列に追加する。
@@ -367,7 +380,6 @@ modalButton.addEventListener("click", function(){
 // クリックしたらチェックの背景を青色にする。二回クリックしたら白に戻す。
 // チェックの背景を変更する関数
 function addCheck(number) {
-    const checkItems = document.getElementsByName("check_item")
     checkItems[number].classList.toggle("active")
 }
 

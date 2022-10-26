@@ -295,15 +295,13 @@
       /* rgbaを使って60%の黒いオーバーレイにする */
       background: rgba(0, 0, 0, 0.6);  
       /* デフォルトでは見えないようにする */
-      opacity: 0;
-      visibility: hidden;
+      display: none;
       /* 表示する際の変化の所要時間 */
       transition: .3s;
       z-index: 1;
       &.active{
         /* activeクラスがついたときにオーバーレイを表示する */
-        opacity: 1;
-        visibility: visible;
+        display: block;
       }
       &.disable{
         //   disableクラスがついたときにオーバーレイをクリックできなくする
