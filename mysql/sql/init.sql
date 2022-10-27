@@ -10,17 +10,17 @@ set character_set_connection= utf8mb4;
 
 set character_set_results = utf8mb4;
 
-DROP TABLE IF EXISTS members;
+-- DROP TABLE IF EXISTS members;
 
-CREATE TABLE
-    members (
-        id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    );
+-- CREATE TABLE
+--     members (
+--         id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+--         name VARCHAR(255) NOT NULL,
+--         email VARCHAR(255) NOT NULL,
+--         password VARCHAR(255) NOT NULL,
+--         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+--         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+--     );
 
 
 DROP TABLE IF EXISTS records;
@@ -28,8 +28,8 @@ DROP TABLE IF EXISTS records;
 CREATE TABLE
     records (
         id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        member_id INT NOT NULL,
-        post_id INT NOT NULL,
+        -- member_id INT NOT NULL,
+        -- post_id INT NOT NULL,
         content_id INT NOT NULL,
         lang_id INT NOT NULL,
         hour INT NOT NULL,
@@ -37,23 +37,28 @@ CREATE TABLE
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 
+INSERT INTO
+    records (id, content_id, lang_id, hour)
+VALUES 
+    (1, 1, 1, 8), 
+    (2, 2, 2, 3),
+    (3, 3, 3, 4);
 
 
 DROP TABLE IF EXISTS contents;
 
 CREATE TABLE
     contents (
-        id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        content_id INT NOT NULL,
+        id INT NOT NULL PRIMARY KEY,
         content VARCHAR(255) NOT NULL,
     );
 
 INSERT INTO
-    contents (content_id, content)
+    contents (id, content)
 VALUES 
     (1, 'N予備校'), 
-    (2, 'ドットインストール'),
-    (4, 'posse課題');
+    (2, 'ドットインストール, posse課題'),
+    (3, 'posse課題');
 
 
 DROP TABLE IF EXISTS langs;
@@ -61,20 +66,14 @@ DROP TABLE IF EXISTS langs;
 CREATE TABLE
     langs (
         id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        lang_id INT NOT NULL,
         lang VARCHAR(255) NOT NULL,
     );
 
 
 INSERT INTO
-    langs (content_id, content)
+    langs (id, lang)
 VALUES 
     (1, 'HTML'),
     (2, 'CSS'),
-    (4, 'JavaScript'),
-    (8, 'PHP'),
-    (16, 'Laravel'),
-    (32, 'SQL'),
-    (64, 'SHELL'),
-    (128, 'その他');
+    (3, 'JavaScript, php');
 
