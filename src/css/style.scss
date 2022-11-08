@@ -422,6 +422,9 @@
                             flex-wrap: wrap;
                             flex-direction: row;
                             margin-top: 2px;
+                            input[type=checkbox]{
+                                display: none;
+                            }
                             .content_item{
                                 font-size: 13px;
                                 background-color: #f5f5f8;
@@ -468,11 +471,14 @@
                             font-size: 13px;
                             font-weight: bold;
                         }
-                        .langs_list{
+                        .langs{
                             display: flex;
                             flex-wrap: wrap;
                             flex-direction: row;
                             margin-top: 2px;
+                            input[type=checkbox]{
+                                display: none;
+                            }
                             .lang_item{
                                 font-size: 13px;
                                 background-color: #f5f5f8;

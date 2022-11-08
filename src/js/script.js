@@ -9,7 +9,7 @@ const modal = document.getElementById("modal")
     const record = document.getElementById("record")
         const modalButton = document.getElementById("modalButton")
         const calendarBox = document.getElementById("calendarBox")
-        const checkItems = document.getElementsByName("check_item")
+        const checkItems = document.getElementsByClassName("check_item")
         const twitterShareButton = document.getElementById("twitterShareButton")
         const twitterNewTab = document.getElementById("twitterNewTab")
 const twitterComment = document.getElementById("twitterComment")
@@ -350,6 +350,7 @@ function check(year, month, date){
     }
     selectDate.classList.add("selected")
     calendarBoxHTML = `${year}年${month+1}月${date}日`
+    calendarBox.setAttribute('value', calendarBoxHTML);
 }
 calendarButton.addEventListener("click",function(){
     // recordに戻る

@@ -427,6 +427,9 @@ html {
   flex-direction: row;
   margin-top: 2px;
 }
+.modal .record .info .modal_column1 .wrapper_contents .contents input[type=checkbox] {
+  display: none;
+}
 .modal .record .info .modal_column1 .wrapper_contents .contents .content_item {
   font-size: 13px;
   background-color: #f5f5f8;
@@ -469,13 +472,16 @@ html {
   font-size: 13px;
   font-weight: bold;
 }
-.modal .record .info .modal_column1 .wrapper_langs .langs_list {
+.modal .record .info .modal_column1 .wrapper_langs .langs {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   margin-top: 2px;
 }
-.modal .record .info .modal_column1 .wrapper_langs .langs_list .lang_item {
+.modal .record .info .modal_column1 .wrapper_langs .langs input[type=checkbox] {
+  display: none;
+}
+.modal .record .info .modal_column1 .wrapper_langs .langs .lang_item {
   font-size: 13px;
   background-color: #f5f5f8;
   border-radius: 13px;
@@ -484,14 +490,14 @@ html {
   margin-top: 8px;
   position: relative;
 }
-.modal .record .info .modal_column1 .wrapper_langs .langs_list .lang_item::before {
+.modal .record .info .modal_column1 .wrapper_langs .langs .lang_item::before {
   content: "・";
   font-size: 16px;
   background-color: #cccccc;
   color: #cccccc;
   border-radius: 16px;
 }
-.modal .record .info .modal_column1 .wrapper_langs .langs_list .lang_item::after {
+.modal .record .info .modal_column1 .wrapper_langs .langs .lang_item::after {
   content: "";
   display: block;
   position: absolute;
@@ -503,10 +509,10 @@ html {
   border-bottom: 2px solid #ffffff;
   transform: rotate(-45deg);
 }
-.modal .record .info .modal_column1 .wrapper_langs .langs_list .lang_item.active {
+.modal .record .info .modal_column1 .wrapper_langs .langs .lang_item.active {
   background-color: #e7f5ff;
 }
-.modal .record .info .modal_column1 .wrapper_langs .langs_list .lang_item.active::before {
+.modal .record .info .modal_column1 .wrapper_langs .langs .lang_item.active::before {
   background-color: #0f71bd;
   color: #0f71bd;
 }
@@ -781,4 +787,5 @@ html {
 }
 .footer .footer_wrapper .header_button:hover {
   opacity: 0.8;
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */

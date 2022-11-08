@@ -14,26 +14,14 @@ try {
     echo 'DB接続エラー！: ' . $e->getMessage();
 }
 
-// $query = 'SELECT * FROM records WHERE id = :id';
-// //SQL作成
-// $stmt = $pdo->prepare($query);
-// //登録するデータをセット
-// $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-// //SQL実行
-// $res = $stmt->execute();
-// //該当するデータを取得
-// if ($res) {
-//     $data = $stmt->fetchAll();
-// }
-
-$query = 'SELECT * FROM records JOIN contents on contents.id = records.content_id JOIN langs on langs.id = records.lang_id';
-$res = $pdo->query($query);
-$all_data = $res->fetchAll();
 
 
-$query = "select ifnull(sum(hour), 0) hour from records where created_at = current_date";
+
+//今日の勉強時間
+$query = "select ifnull(sum(hour), 0) hour from records where date_format(created_at, '%Y-%m-%d') = date_format(current_date, '%Y-%m-%d')";
 $res = $pdo->query($query);
 $today_hour_data = $res->fetchAll();
+
 
 $query = "select ifnull(sum(hour), 0) hour from records where date_format(created_at, '%Y-%m') = date_format(current_date, '%Y-%m')";
 $res = $pdo->query($query);
@@ -58,7 +46,7 @@ include('./_parts/_header.php')
             <div class="wrapper1">
                 <ul class="item_contents">
                     <li class="item_label">Today</li>
-                    <li class="item_number"><?=$today_hour_data[0]['hour'];?></li>
+                    <li class="item_number"><?= $today_hour_data[0]['hour']; ?></li>
                     <li class="item_hour">hour</li>
                 </ul>
                 <ul class="item_contents">
@@ -122,33 +110,44 @@ include('./_parts/_header.php')
         <!-- カレンダー画面でのみ表示 -->
         <div id="backButton" class="back">←</div>
         <!-- 記録画面 -->
-        <div id="record" class="record">
+        <form id="record" class="record" method="POST" action="form.php">
             <div class="info">
                 <!-- 記録左側 -->
                 <div class="modal_column1">
                     <div class="wrapper_date">
                         <p class="date_text">学習日</p>
-                        <p id="calendarBox" class="date_calendar"></p>
+                        <input name="date" type="text" id="calendarBox" class="date_calendar">
                     </div>
                     <div class="wrapper_contents">
                         <p class="contents_text">学習コンテンツ（複数選択可）</p>
                         <ul class="contents">
-                            <li name="check_item" class="content_item" onclick='addCheck(0)'>N予備校</li>
-                            <li name="check_item" class="content_item" onclick='addCheck(1)'>ドットインストール</li>
-                            <li name="check_item" class="content_item" onclick='addCheck(2)'>POSSE課題</li>
+                            <input type="checkbox" name="content[]" id="checkbox0" value="N予備校">
+                            <label for="checkbox0" class="content_item check_item" onclick='addCheck(0)'>N予備校</label>
+                            <input type="checkbox" name="content[]" id="checkbox1" value="ドットインストール">
+                            <label for="checkbox1" class="content_item check_item" onclick='addCheck(1)'>ドットインストール</label>
+                            <input type="checkbox" name="content[]" id="checkbox2" value="POSSE課題">
+                            <label for="checkbox2" class="content_item check_item" onclick='addCheck(2)'>POSSE課題</label>
                         </ul>
                     </div>
                     <div class="wrapper_langs">
                         <p class="langs_text">学習言語（複数選択可）</p>
-                        <ul class="langs_list">
-                            <li name="check_item" class="lang_item" onclick='addCheck(3)'>CSS</li>
-                            <li name="check_item" class="lang_item" onclick='addCheck(4)'>HTML</li>
-                            <li name="check_item" class="lang_item" onclick='addCheck(5)'>JavaScript</li>
-                            <li name="check_item" class="lang_item" onclick='addCheck(6)'>PHP</li>
-                            <li name="check_item" class="lang_item" onclick='addCheck(7)'>Laravel</li>
-                            <li name="check_item" class="lang_item" onclick='addCheck(8)'>SQL</li>
-                            <li name="check_item" class="lang_item" onclick='addCheck(9)'>SHELL</li>
-                            <li name="check_item" class="lang_item" onclick='addCheck(10)'>情報システム基礎知識（その他）</li>
+                        <ul class="langs">
+                            <input type="checkbox" name="lang[]" id="checkbox3" value="CSS">
+                            <label for="checkbox3" class="lang_item check_item" onclick='addCheck(3)'>CSS</label>
+                            <input type="checkbox" name="lang[]" id="checkbox4" value="HTML">
+                            <label for="checkbox4" class="lang_item check_item" onclick='addCheck(4)'>HTML</label>
+                            <input type="checkbox" name="lang[]" id="checkbox5" value="JavaScript">
+                            <label for="checkbox5" class="lang_item check_item" onclick='addCheck(5)'>JavaScript</label>
+                            <input type="checkbox" name="lang[]" id="checkbox6" value="PHP">
+                            <label for="checkbox6" class="lang_item check_item" onclick='addCheck(6)'>PHP</label>
+                            <input type="checkbox" name="lang[]" id="checkbox7" value="Laravel">
+                            <label for="checkbox7" class="lang_item check_item" onclick='addCheck(7)'>Laravel</label>
+                            <input type="checkbox" name="lang[]" id="checkbox8" value="SQL">
+                            <label for="checkbox8" class="lang_item check_item" onclick='addCheck(8)'>SQL</label>
+                            <input type="checkbox" name="lang[]" id="checkbox9" value="SHELL">
+                            <label for="checkbox9" class="lang_item check_item" onclick='addCheck(9)'>SHELL</label>
+                            <input type="checkbox" name="lang[]" id="checkbox10" value="情報システム基礎知識（その他）">
+                            <label for="checkbox10" class="lang_item check_item" onclick='addCheck(10)'>情報システム基礎知識（その他）</label>
                         </ul>
                     </div>
                 </div>
@@ -156,18 +155,17 @@ include('./_parts/_header.php')
                 <div class="modal_column2">
                     <div class="wrapper_time">
                         <p class="time_text">学習時間</p>
-                        <input class="time_textarea"></input>
+                        <input name="time" type="text" class="time_textarea"></input>
                     </div>
                     <div class="wrapper_twitter">
                         <p class="twitter_text">Twitter用コメント</p>
                         <textarea id="twitterComment" class="twitter_textarea" minlength="1" maxlength="140"></textarea>
-
                     </div>
                     <p id="twitterShareButton" name="check_item" class="twitter_check" onclick='addCheck(11)'>Twitterにシェアする</p>
                 </div>
             </div>
-            <button id="modalButton" class="header_button"><a id="twitterNewTab" target="_blank" rel="noopener noreferrer">記録・投稿</a></button>
-        </div>
+            <button type="submit" id="modalButton" class="header_button"><a id="twitterNewTab" target="_blank" rel="noopener noreferrer">記録・投稿</a></button>
+        </form>
         <!-- カレンダー画面 -->
         <div id="calendarWrapper" class="calendar_wrapper">
             <button class="cal_left" onclick="prev()">＜</button>
