@@ -5,25 +5,43 @@ $PASSWORD = 'password';
 
 try {
     // データベースに接続
-    $pdo = new PDO($DSN, $USER, $PASSWORD);
+    $pdo = new PDO($DSN, $USER, $PASSWORD, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
     // echo "接続OK！" . "n";
 } catch (PDOException $e) {
     echo 'DB接続エラー！: ' . $e->getMessage();
 }
 
+// $query = 'SELECT * FROM records WHERE id = :id';
+// //SQL作成
+// $stmt = $pdo->prepare($query);
+// //登録するデータをセット
+// $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+// //SQL実行
+// $res = $stmt->execute();
+// //該当するデータを取得
+// if ($res) {
+//     $data = $stmt->fetchAll();
+// }
 
-//SQL作成
-$stmt = $pdo->prepare("SELECT * FROM big_questions WHERE id = :id");
-//登録するデータをセット
-$stmt->bindParam(':id', $id, PDO::PARAM_INT);
-//SQL実行
-$res = $stmt->execute();
-//該当するデータを取得
-if ($res) {
-    $data = $stmt->fetchAll();
-}
+$query = 'SELECT * FROM records JOIN contents on contents.id = records.content_id JOIN langs on langs.id = records.lang_id';
+$res = $pdo->query($query);
+$all_data = $res->fetchAll();
 
 
+$query = "select ifnull(sum(hour), 0) hour from records where created_at = current_date";
+$res = $pdo->query($query);
+$today_hour_data = $res->fetchAll();
+
+$query = "select ifnull(sum(hour), 0) hour from records where date_format(created_at, '%Y-%m') = date_format(current_date, '%Y-%m')";
+$res = $pdo->query($query);
+$month_hour_data = $res->fetchAll();
+
+$query = "SELECT IFNULL(sum(hour), 0) hour FROM records";
+$res = $pdo->query($query);
+$total_hour_data = $res->fetchAll();
 
 
 //headerの埋め込み
@@ -40,17 +58,17 @@ include('./_parts/_header.php')
             <div class="wrapper1">
                 <ul class="item_contents">
                     <li class="item_label">Today</li>
-                    <li class="item_number">3</li>
+                    <li class="item_number"><?=$today_hour_data[0]['hour'];?></li>
                     <li class="item_hour">hour</li>
                 </ul>
                 <ul class="item_contents">
                     <li class="item_label">Month</li>
-                    <li class="item_number">120</li>
+                    <li class="item_number"><?= $month_hour_data[0]['hour']; ?></li>
                     <li class="item_hour">hour</li>
                 </ul>
                 <ul class="item_contents">
                     <li class="item_label">Total</li>
-                    <li class="item_number">1348</li>
+                    <li class="item_number"><?= $total_hour_data[0]['hour']; ?></li>
                     <li class="item_hour">hour</li>
                 </ul>
             </div>
@@ -173,6 +191,8 @@ include('./_parts/_header.php')
     </div>
 </main>
 <!-- main -->
+
+<p><?= print_r($hour_data) ?></p>
 
 <?php
 
