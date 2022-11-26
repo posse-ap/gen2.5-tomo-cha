@@ -1,20 +1,7 @@
 <?php
-$DSN = "mysql:host=db;dbname=posse;charset=utf8mb4;";
-$USER = 'posse_user';
-$PASSWORD = 'password';
 
-try {
-    // データベースに接続
-    $pdo = new PDO($DSN, $USER, $PASSWORD, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    ]);
-    // echo "接続OK！" . "n";
-} catch (PDOException $e) {
-    echo 'DB接続エラー！: ' . $e->getMessage();
-}
-
-
+// pdoの共通部分
+require('./dbconnect.php');
 
 
 //今日の勉強時間
@@ -22,11 +9,12 @@ $query = "select ifnull(sum(hour), 0) hour from records where date_format(create
 $res = $pdo->query($query);
 $today_hour_data = $res->fetchAll();
 
-
+//今月の勉強時間
 $query = "select ifnull(sum(hour), 0) hour from records where date_format(created_at, '%Y-%m') = date_format(current_date, '%Y-%m')";
 $res = $pdo->query($query);
 $month_hour_data = $res->fetchAll();
 
+//今までの勉強時間
 $query = "SELECT IFNULL(sum(hour), 0) hour FROM records";
 $res = $pdo->query($query);
 $total_hour_data = $res->fetchAll();
@@ -164,7 +152,7 @@ include('./_parts/_header.php')
                     <p id="twitterShareButton" name="check_item" class="twitter_check" onclick='addCheck(11)'>Twitterにシェアする</p>
                 </div>
             </div>
-            <button type="submit" id="modalButton" class="header_button"><a id="twitterNewTab" target="_blank" rel="noopener noreferrer">記録・投稿</a></button>
+            <button type="submit" id="modalButton" class="header_button" name="button_submit"><a id="twitterNewTab" target="_blank" rel="noopener noreferrer">記録・投稿</a></button>
         </form>
         <!-- カレンダー画面 -->
         <div id="calendarWrapper" class="calendar_wrapper">
@@ -190,10 +178,10 @@ include('./_parts/_header.php')
 </main>
 <!-- main -->
 
-<p><?= print_r($hour_data) ?></p>
-
 <?php
+// footerの埋め込み
+include('./_parts/_footer.php');
 
-include('./_parts/_footer.php')
-
+// グラフ描画部分の埋め込み
+require('./graph.php');
 ?>
